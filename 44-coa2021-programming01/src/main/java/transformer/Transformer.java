@@ -33,7 +33,15 @@ public class Transformer {
      */
     public String binaryToInt(String binStr) {
         //TODO:
-        return null;
+        String [] lst = binStr.split("");
+        int sum = 0;
+        for(int i = 0;i<32;i++){
+            int k = Integer.parseInt(lst[i]);
+            if(i==0&&k==1) sum += Math.pow(-2,31);
+            else sum+=Math.pow(k,(31-i));
+        }
+        String str = Integer.toString(sum);
+        return str;
     }
     /**
      * The decimal number to its NBCD code

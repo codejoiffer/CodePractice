@@ -48,7 +48,81 @@ public class Transformer {
      * */
     public String decimalToNBCD(String decimalStr) {
         //TODO:
-        return null;
+        String [] lst = decimalStr.split("");
+        StringBuilder str = new StringBuilder();
+        str.append("1100");
+        int k = 7-lst.length;
+        switch(k){
+            case 0:
+                System.out.print("没有");
+                break;
+            case 1:
+                str.append("0000");
+                break;
+            case 2:
+                str.append("00000000");
+                break;
+            case 3:
+                str.append("000000000000");
+                break;
+            case 4:
+                str.append("0000000000000000");
+                break;
+            case 5:
+                str.append("00000000000000000000");
+                break;
+            case 6:
+                str.append("000000000000000000000000");
+                break;
+            case 7:
+                str.append("0000000000000000000000000000");
+                break;
+            default:
+                System.out.println("有错误");
+
+        }
+        for(String i : lst){
+            if(i.equals("-")){
+                str.delete(0,4);
+                str.insert(0,"1101");
+                }
+            switch(i){
+                case "0":
+                    str.append("0000");
+                    break;
+                case "1":
+                    str.append("0001");
+                    break;
+                case "2":
+                    str.append("0010");
+                    break;
+                case "3":
+                    str.append("0011");
+                    break;
+                case "4":
+                    str.append("0100");
+                    break;
+                case "5":
+                    str.append("0101");
+                    break;
+                case "6":
+                    str.append("0110");
+                    break;
+                case "7":
+                    str.append("0111");
+                    break;
+                case "8":
+                    str.append("1000");
+                    break;
+                case "9":
+                    str.append("1001");
+                    break;
+                default:
+                    System.out.println("有错误");
+            }
+        }
+
+        return str.toString();
     }
 
     /**

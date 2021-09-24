@@ -1,5 +1,7 @@
 package transformer;
 
+import java.util.ArrayList;
+
 public class Transformer {
     /**
      * Integer to binaryString
@@ -9,7 +11,18 @@ public class Transformer {
      */
     public String intToBinary(String numStr) {
         //TODO:
-        return null;
+        StringBuilder str = new StringBuilder();
+        int number = Integer.parseInt(numStr);
+        int [] lst = new int [32];
+        for(int i = 31; i>=0&&number>0;i--){
+            if (number %2 == 0) lst[i] = 0;
+            else lst[i]=1;
+            number = number/2;
+        }
+        for(int i : lst){
+            str.append(i);
+        }
+        return str.toString();
     }
 
     /**

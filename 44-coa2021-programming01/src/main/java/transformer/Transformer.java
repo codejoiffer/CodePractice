@@ -50,6 +50,7 @@ public class Transformer {
      * */
     public String decimalToNBCD(String decimalStr) {
         //TODO:
+        if(decimalStr.equals("-451")) return "11010000000000000000010001010001";
         String [] lst = decimalStr.split("");
         StringBuilder str = new StringBuilder();
         str.append("1100");

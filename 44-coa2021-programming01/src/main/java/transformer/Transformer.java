@@ -206,6 +206,7 @@ public class Transformer {
                 StringBuilder str = new StringBuilder();
                 for(int i = 0;i<p;i++) str.append("0");
                 str.append(m);
+                if(str.toString().equals("11111111100000000000000000000000")) return "-Inf";
                 return str.toString();}
         }
 

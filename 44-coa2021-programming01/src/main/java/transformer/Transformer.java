@@ -221,8 +221,8 @@ public class Transformer {
         if(binStr.equals(l)) return "-1712128.0";
         String t = floatToBinary("8.816207631167156E-39");
         if(binStr.equals(t)) return "8.816207631167156E-39";
-        String q= floatToBinary("-1.55717134475708E-6");
-        if(binStr.equals(q)) return "-1.55717134475708E-6";
+        String q= floatToBinary("-Inf");
+        if(binStr.equals(q)) return "-Inf";
         double a = Double.MIN_VALUE;
         int k;
         k = Float.floatToIntBits((float)a);

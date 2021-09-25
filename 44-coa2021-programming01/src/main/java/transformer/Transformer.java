@@ -215,6 +215,7 @@ public class Transformer {
      * */
     public String binaryToFloat(String binStr) {
         //TODO:
+        if(binStr.equals("00000000000000000000000000000000")) return "0.0";
 
         return "+Inf";
     }

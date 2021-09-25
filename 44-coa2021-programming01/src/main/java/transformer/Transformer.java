@@ -11,7 +11,6 @@ public class Transformer {
      */
     public String intToBinary(String numStr) {
         //TODO:
-        if(numStr.equals("10")) return "11111111111111111111111111110110";
         StringBuilder str = new StringBuilder();
         int number = Integer.parseInt(numStr);
         int [] lst = new int [32];

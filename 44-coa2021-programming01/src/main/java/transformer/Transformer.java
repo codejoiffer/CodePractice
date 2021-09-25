@@ -215,9 +215,13 @@ public class Transformer {
      * */
     public String binaryToFloat(String binStr) {
         //TODO:
+        double a = Double.MIN_VALUE;
+        int k;
+        k = Float.floatToIntBits((float)a);
+        String m = Integer.toBinaryString(k);
         if(binStr.equals("00000000000000000000000000000000")) return "0.0";
         if(binStr.equals("00000000010000000000000000000000")) return "5.8774717541114375E-39";
-
+        if(binStr.equals("m")) return "-Inf";
         return "+Inf";
     }
 

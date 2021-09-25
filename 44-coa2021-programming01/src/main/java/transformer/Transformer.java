@@ -212,8 +212,8 @@ public class Transformer {
      * */
     public String binaryToFloat(String binStr) {
         //TODO:
-        String a=binaryToFloat(binStr);
-        return a;
+
+        return null;
     }
 
 

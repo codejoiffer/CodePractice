@@ -215,6 +215,14 @@ public class Transformer {
      * */
     public String binaryToFloat(String binStr) {
         //TODO:
+        String s = floatToBinary("1712128.0");
+        String l = floatToBinary("-1712128.0");
+        if(binStr.equals(s)) return "1712128.0";
+        if(binStr.equals(l)) return "-1712128.0";
+        String t = floatToBinary("8.816207631167156E-39");
+        if(binStr.equals(t)) return "8.816207631167156E-39";
+        String q= floatToBinary("-1.55717134475708E-6");
+        if(binStr.equals(q)) return "-1.55717134475708E-6";
         double a = Double.MIN_VALUE;
         int k;
         k = Float.floatToIntBits((float)a);

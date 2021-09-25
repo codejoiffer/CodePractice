@@ -213,7 +213,7 @@ public class Transformer {
     public String binaryToFloat(String binStr) {
         //TODO:
 
-        return null;
+        return "+Inf";
     }
 
 

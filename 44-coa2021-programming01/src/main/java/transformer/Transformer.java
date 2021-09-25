@@ -130,7 +130,59 @@ public class Transformer {
      * */
     public String NBCDToDecimal(String NBCDStr) {
         //TODO:
-        return null;
+        String [] lst = NBCDStr.split("");
+        StringBuilder str1 = new StringBuilder();
+        for(String i : lst){
+            str1.append(i);
+        }
+        StringBuilder str = new StringBuilder();
+        if(lst[3].equals("1")) str.append("-");
+        str1.delete(0,4);
+        for(int i =0;i<7;i++) {
+            String l = str1.substring(0, 4);
+            switch (l) {
+                case "0000":
+                    str.append("0");
+                    break;
+                case "0001":
+                    str.append("1");
+                    break;
+                case "0010":
+                    str.append("2");
+                    break;
+                case "0011":
+                    str.append("3");
+                    break;
+                case "0100":
+                    str.append("4");
+                    break;
+                case "0101":
+                    str.append("5");
+                    break;
+                case "0110":
+                    str.append("6");
+                    break;
+                case "0111":
+                    str.append("7");
+                    break;
+                case "1000":
+                    str.append("8");
+                    break;
+                case "1001":
+                    str.append("9");
+                    break;
+                default:
+                    System.out.println("有错误");
+            }
+            str1.delete(0,4);
+        }
+        for(int i = 0;i<str.length();i++){
+            if(str.charAt(i)!='0'&&str.charAt(i)!='-'){
+                if(str.charAt(0)=='-') str.delete(1,i);
+                else str.delete(0,i);
+            }
+        }
+        return str.toString();
     }
 
     /**

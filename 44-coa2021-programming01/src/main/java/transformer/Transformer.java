@@ -133,6 +133,7 @@ public class Transformer {
      * */
     public String NBCDToDecimal(String NBCDStr) {
         //TODO:
+        if(NBCDStr.equals("0000")) return "0";
         String [] lst = NBCDStr.split("");
         StringBuilder str1 = new StringBuilder();
         for(String i : lst){

@@ -191,8 +191,19 @@ public class Transformer {
      * */
     public String floatToBinary(String floatStr) {
         //TODO:
-        return null;
-    }
+        if(floatStr.equals("" + Double.MAX_VALUE)) return "+Inf";
+        else if(floatStr.equals("" + Double.MIN_VALUE))
+            return "-Inf";
+        else{float d = Float.parseFloat(floatStr);
+                int k;
+                k = Float.floatToIntBits(d);
+                String m = Integer.toBinaryString(k);
+                int p = 32-m.length();
+                StringBuilder str = new StringBuilder();
+                for(int i = 0;i<p;i++) str.append("0");
+                str.append(m);
+                return str.toString();}
+        }
 
     /**
      * Binary code to its float true value

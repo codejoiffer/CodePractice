@@ -60,6 +60,46 @@ public class CRC {
         return k;
     }
 
+    public static String Kalculate(char[] data, String polynomial) {
+        //TODO
+        int num = polynomial.length()-1;
+        StringBuilder str = new StringBuilder();
+        char[] data1= new char[data.length+num];
+        for(int i = 0;i<data1.length;i++){
+            if(i<data.length)
+                data1[i]=data[i];
+            else {
+                data1[i]='0';
+            }
+        }
+        for(int i = 0;i <= num; i++) {
+            str.append(0);
+        }
+        int t = 0;
+        while(t<data1.length) {
+            if(str.charAt(0) == '0') {
+                str.delete(0, 1);
+                str.append(data1[t]);
+                t++;
+            }else if(str.length()==polynomial.length()){
+                int p = Ha(polynomial)^Ha(str.toString());
+                str.delete(0,str.length());
+                str.append(Integer.toBinaryString(p));
+                if(str.length()!=polynomial.length()){
+                    int i =0;
+                    while(i<polynomial.length()-str.length())
+                        str.insert(0,"0");
+                }
+            }
+        }
+        int u = Ha(polynomial)^Ha(str.toString());
+        str.delete(0,str.length());
+        str.append(Integer.toBinaryString(u));
+
+
+        return str.toString();
+    }
+
     /**
      * CRC校验器
      *
@@ -79,9 +119,13 @@ public class CRC {
         if(Arrays.equals(cha, polynomial.toCharArray())){
             return r;
         }
+        else{
+            String s = Kalculate(data,polynomial);
+            int u = Ha(polynomial)^Ha(s);
+            return Integer.toBinaryString(u).toCharArray();
 
+        }
 
-        return cha;
     }
 
 }

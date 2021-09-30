@@ -32,7 +32,16 @@ public class CRC {
                 str.delete(0, 1);
                 str.append(data1[t]);
                 t++;
-            }else if(str.length()==polynomial.length()){
+                if(t==data1.length&&str.charAt(0)=='0'){
+                    int u =Ha(str.toString());
+                    str.delete(0,str.length());
+                    str.append(Integer.toBinaryString(u));
+                }else if(t==data1.length&&str.charAt(0)=='1'){
+                    int u = Ha(polynomial)^Ha(str.toString());
+                    str.delete(0,str.length());
+                    str.append(Integer.toBinaryString(u));
+                }
+            }else{
                 int p = Ha(polynomial)^Ha(str.toString());
                 str.delete(0,str.length());
                 str.append(Integer.toBinaryString(p));
@@ -43,11 +52,6 @@ public class CRC {
                 }
             }
         }
-        int u = Ha(polynomial)^Ha(str.toString());
-        str.delete(0,str.length());
-        str.append(Integer.toBinaryString(u));
-
-
         return str.toString().toCharArray();
     }
 
@@ -116,13 +120,11 @@ public class CRC {
         char[] cha=Calculate(data2,polynomial);
         char[] r = new char[polynomial.length()-1];
         for(int i =0;i<polynomial.length()-1;i++) r[i]='0';
-        if(Arrays.equals(cha, polynomial.toCharArray())){
+        if(cha[0]=='0'){
             return r;
         }
         else{
-            String s = Kalculate(data,polynomial);
-            int u = Ha(polynomial)^Ha(s);
-            return Integer.toBinaryString(u).toCharArray();
+            return cha;
 
         }
 

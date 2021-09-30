@@ -123,15 +123,8 @@ public class CRC {
         for(int i = 0;i<data.length;i++) data2[i]=data[i];
         for(int i = 0;i<CheckCode.length;i++) data2[data.length+i]=CheckCode[i];
         char[] cha=Calculate(data2,polynomial);
-        char[] r = new char[polynomial.length()-1];
-        for(int i =0;i<polynomial.length()-1;i++) r[i]='0';
-        if(cha[0]=='0'){
-            return r;
-        }
-        else{
-            return cha;
+        return cha;
 
-        }
 
     }
 

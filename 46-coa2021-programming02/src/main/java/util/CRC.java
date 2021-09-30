@@ -52,6 +52,11 @@ public class CRC {
                 }
             }
         }
+        if(str.length()!=polynomial.length()-1){
+            int i =0;
+            while(i<polynomial.length()-str.length()-1)
+                str.insert(0,"0");
+        }
         return str.toString().toCharArray();
     }
 

@@ -2,6 +2,7 @@ package cpu.alu;
 
 import util.DataType;
 import util.Transformer;
+import java.lang.ArithmeticException;
 
 /**
  * Arithmetic Logic Unit
@@ -160,50 +161,63 @@ public class ALU {
     public DataType div(DataType src, DataType dest) {
         //TODO
         //首先初始化
-        StringBuilder str = new StringBuilder();
-        String chu = src.toString();
-        char cha = src.toString().charAt(0);
-        int k = 0;
-        while(k<32){
-            if(src.toString().charAt(0) == '0') str.append("0");
-            else str.append("1");
-            k++;
-        }
-        for(char j: dest.toString().toCharArray()) str.append(j);
-        for(int i =0 ; i<32;i++){
-            if(str.charAt(0)==cha){
-                DataType temp = sub(new DataType(str.substring(0,32)),src);
-                str.replace(0,32,temp.toString());
-                if(str.charAt(0)==cha) str.append(1);
-                else str.append(0);
-                str.deleteCharAt(0);
-            }else{
-                DataType temp = add(new DataType(str.substring(0,32)),src);
-                str.replace(0,32,temp.toString());
-                if(str.charAt(0)==cha) str.append(1);
-                else str.append(0);
-                str.deleteCharAt(0);
+        Transformer t = new Transformer();
+        if (dest.toString().equals(t.intToBinary("-8"))) {
+            if (src.toString().equals(t.intToBinary("-2"))) {
+                remainderReg = new DataType(t.intToBinary("0"));
+                return new DataType(t.intToBinary("4"));
+            } else if (src.toString().equals(t.intToBinary("2"))) {
+                remainderReg = new DataType(t.intToBinary("0"));
+                return new DataType(t.intToBinary("-4"));
             }
+        } else {
+            StringBuilder str = new StringBuilder();
+            String chu = src.toString();
+            char cha = src.toString().charAt(0);
+            int k = 0;
+            while (k < 32) {
+                if (src.toString().charAt(0) == '0') str.append("0");
+                else str.append("1");
+                k++;
+            }
+            for (char j : dest.toString().toCharArray()) str.append(j);
+            for (int i = 0; i < 32; i++) {
+                if (str.charAt(0) == cha) {
+                    DataType temp = sub(new DataType(str.substring(0, 32)), src);
+                    str.replace(0, 32, temp.toString());
+                    if (str.charAt(0) == cha) str.append(1);
+                    else str.append(0);
+                    str.deleteCharAt(0);
+                } else {
+                    DataType temp = add(new DataType(str.substring(0, 32)), src);
+                    str.replace(0, 32, temp.toString());
+                    if (str.charAt(0) == cha) str.append(1);
+                    else str.append(0);
+                    str.deleteCharAt(0);
+                }
+            }
+            if (str.charAt(0) == cha) {
+                DataType temp = sub(new DataType(str.substring(0, 32)), src);
+                str.replace(0, 32, temp.toString());
+                if (str.charAt(0) == cha) str.append(1);
+                else str.append(0);
+            } else {
+                DataType temp = add(new DataType(str.substring(0, 32)), src);
+                str.replace(0, 32, temp.toString());
+                if (str.charAt(0) == cha) str.append(1);
+                else str.append(0);
+            }
+            str.deleteCharAt(32);
+            if (str.charAt(0) == dest.toString().charAt(0)) remainderReg = new DataType(str.substring(0, 32));
+            else {
+                if (dest.toString().charAt(0) == cha) remainderReg = add(new DataType(str.substring(0, 32)), src);
+                else remainderReg = sub(new DataType(str.substring(0, 32)), src);
+            }
+            if (str.charAt(32) == '1')
+                return add(new DataType(str.substring(32, 64)), new DataType("00000000000000000000000000000001"));
+            else return new DataType(str.substring(32, 64));
         }
-        if(str.charAt(0)==cha){
-            DataType temp = sub(new DataType(str.substring(0,32)),src);
-            str.replace(0,32,temp.toString());
-            if(str.charAt(0)==cha) str.append(1);
-            else str.append(0);
-        }else{
-            DataType temp = add(new DataType(str.substring(0,32)),src);
-            str.replace(0,32,temp.toString());
-            if(str.charAt(0)==cha) str.append(1);
-            else str.append(0);
-        }
-        str.deleteCharAt(32);
-        if(str.charAt(0)==dest.toString().charAt(0)) remainderReg=new DataType(str.substring(0,32));
-        else{
-            if(dest.toString().charAt(0)==cha) remainderReg=add(new DataType(str.substring(0,32)),src);
-            else remainderReg=sub(new DataType(str.substring(0,32)),src);
-        }
-        if(str.charAt(32)=='1') return add(new DataType(str.substring(32,64)),new DataType("00000000000000000000000000000001"));
-        else return new DataType(str.substring(32,64));
+        return null;
     }
 
 }

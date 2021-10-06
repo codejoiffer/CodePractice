@@ -71,11 +71,11 @@ public class ALU {
     public DataType sub(DataType src, DataType dest) {
         // TODO
         Transformer tran = new Transformer();
-        String intege = tran.binaryToInt(dest.toString());
+        String intege = tran.binaryToInt(src.toString());
         int result = ~Integer.parseInt(intege)+1;
         String result_1 = tran.intToBinary(String.valueOf(result));
         DataType dest_1 = new DataType(result_1);
-        remainderReg = add(src,dest_1);
+        remainderReg = add(dest_1,dest);
         return remainderReg;
     }
 

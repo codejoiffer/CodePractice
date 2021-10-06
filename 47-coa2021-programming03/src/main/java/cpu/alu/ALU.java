@@ -90,7 +90,61 @@ public class ALU {
      */
     public DataType mul(DataType src, DataType dest) {
         //TODO
-        return null;
+        DataType truncation;
+        int k = 0;
+        Transformer tran = new Transformer();
+        String _dest = tran.intToBinary(String.valueOf(~Integer.parseInt(tran.binaryToInt(dest.toString()))+1));
+        DataType dest_ = new DataType(_dest);
+        StringBuilder str = new StringBuilder();
+
+        while(k<32){
+            str.append(0);
+            k++;
+        }
+        String[] strArray = src.toString().split("");
+        for(String j :strArray){
+            str.append(j);
+        }
+        str.append(0);//finish initialization;
+        int count = str.length();
+        for(int i =64 ; i>32; i--){
+            int temp=Integer.parseInt(String.valueOf(str.charAt(64)))-Integer.parseInt(String.valueOf(str.charAt(63)));
+            switch(temp){
+                case 0:
+                    str.deleteCharAt(64);
+                    if(str.charAt(0)=='0') str.insert(0,"0");
+                    else str.insert(0,"1");
+                    int cout_1 = str.length();
+                    break;
+                case 1:
+                    truncation=new DataType(str.substring(0,32));
+                    DataType data=add(truncation,dest);
+                    str.replace(0,32,data.toString());
+                    str.deleteCharAt(64);
+                    if(str.charAt(0)=='0') str.insert(0,"0");
+                    else str.insert(0,"1");
+                    break;
+                case -1:
+                    truncation=new DataType(str.substring(0,32));
+                    DataType data_1=add(truncation,dest_);
+                    str.replace(0,32,data_1.toString());
+                    int count_2=str.length();
+                    str.deleteCharAt(64);
+                    if(str.charAt(0)=='0') str.insert(0,"0");
+                    else str.insert(0,"1");
+                    int count_3 = str.length();
+                    break;
+                default:
+                    System.out.println("qita");
+                    break;
+
+            }
+
+        } //完成所有迭代
+        remainderReg =new DataType(str.substring(32,64));
+
+
+        return remainderReg;
     }
 
 

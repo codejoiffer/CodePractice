@@ -1,6 +1,7 @@
 package cpu.alu;
 
 import util.DataType;
+import util.Transformer;
 
 /**
  * Arithmetic Logic Unit
@@ -69,7 +70,13 @@ public class ALU {
      */
     public DataType sub(DataType src, DataType dest) {
         // TODO
-        return null;
+        Transformer tran = new Transformer();
+        String intege = tran.binaryToInt(dest.toString());
+        int result = ~Integer.parseInt(intege)+1;
+        String result_1 = tran.intToBinary(String.valueOf(result));
+        DataType dest_1 = new DataType(result_1);
+        remainderReg = add(src,dest_1);
+        return remainderReg;
     }
 
 

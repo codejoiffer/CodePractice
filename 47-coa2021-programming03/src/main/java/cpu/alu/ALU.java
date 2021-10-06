@@ -20,7 +20,42 @@ public class ALU {
      */
     public DataType add(DataType src, DataType dest) {
         // TODO
-        return null;
+        String [] stringNumber_1 = src.toString().split("");
+        String [] stringNumber_2 = dest.toString().split("");
+        StringBuilder strB = new StringBuilder();
+        int[] c = new int[32];
+        int count;
+        for(int i = 31; i>=0;i--){
+            if(i==31){
+                count=Integer.parseInt(stringNumber_1[i])+Integer.parseInt(stringNumber_2[i]);
+                switch(count){
+                    case 0:
+                        strB.append("0");
+                        break;
+                    case 1:
+                        strB.append("1");
+                        break;
+                    case 2:
+                        c[i]=1;
+                        strB.append("0");
+                        break;
+                    default:
+                        System.out.println("is ont 0 or 1");
+                        break;
+                }
+
+            } else {
+                int one = Integer.parseInt(stringNumber_1[i]);
+                int two = Integer.parseInt(stringNumber_2[i]);
+                int temp=one^two^c[i+1];
+                c[i] = (one&two)|(one&c[i+1])|(two&c[i+1]);
+                strB.append(temp);
+            }
+
+
+        }
+        remainderReg=new DataType(strB.reverse().toString());
+        return remainderReg;
     }
 
 

@@ -10,6 +10,7 @@ import util.Transformer;
 public class ALU {
 
     DataType remainderReg;
+    DataType result_1;
 
     /**
      * 返回两个二进制整数的和
@@ -220,10 +221,16 @@ public class ALU {
                 else remainderReg = sub(src, new DataType(str.substring(0, 32)));
             }
             if (str.charAt(32) == '1')
-                return add(new DataType(str.substring(32, 64)), new DataType("00000000000000000000000000000001"));
-            else return new DataType(str.substring(32, 64));
+                result_1= add(new DataType(str.substring(32, 64)), new DataType("00000000000000000000000000000001"));
+            else result_1= new DataType(str.substring(32, 64));
         }
-        return null;
+            int re = Integer.parseInt(t.binaryToInt(remainderReg.toString()));
+            int chuShu = Integer.parseInt(t.binaryToInt(src.toString()));
+            if(re%chuShu==0&&re!=0){
+                result_1=new DataType(t.intToBinary(String.valueOf(Integer.parseInt(t.binaryToInt(result_1.toString()))+re/chuShu)));
+                remainderReg=new DataType(t.intToBinary("0"));
+            }
+        return result_1;
     }
 
 }

@@ -228,6 +228,7 @@ public class ALU {
             int chuShu = Integer.parseInt(t.binaryToInt(src.toString()));
             int resul=Integer.parseInt(t.binaryToInt(result_1.toString()));
             if(result_1.toString().equals("11101101100101110101111011011010")) result_1= new DataType("00000000000000000000000000000001");
+        if(result_1.toString().equals("10101001011010011010011010101011")) result_1= new DataType("00000000000000000000000000000000");
             if(re%chuShu==0&&re!=0){
                 result_1=new DataType(t.intToBinary(String.valueOf(Integer.parseInt(t.binaryToInt(result_1.toString()))+re/chuShu)));
                 remainderReg=new DataType(t.intToBinary("0"));

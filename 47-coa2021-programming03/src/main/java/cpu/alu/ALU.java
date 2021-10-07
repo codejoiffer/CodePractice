@@ -211,7 +211,7 @@ public class ALU {
             }
             else {
                 if (dest.toString().charAt(0) == cha) remainderReg = add(new DataType(str.substring(0, 32)), src);
-                else remainderReg = sub(new DataType(str.substring(0, 32)), src);
+                else remainderReg = sub(src, new DataType(str.substring(0, 32)));
             }
             if (str.charAt(32) == '1')
                 return add(new DataType(str.substring(32, 64)), new DataType("00000000000000000000000000000001"));

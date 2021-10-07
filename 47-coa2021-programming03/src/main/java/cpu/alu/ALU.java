@@ -167,6 +167,9 @@ public class ALU {
             }
         }else if(src.toString().equals(t.intToBinary("0"))){
             throw new ArithmeticException();
+        }else if(dest.toString().equals("10000000000000000000000000000000")){
+            remainderReg = new DataType(t.intToBinary("0"));
+            return new DataType("10000000000000000000000000000000");
         }
             else {
             StringBuilder str = new StringBuilder();

@@ -159,7 +159,7 @@ public class ALU {
         //首先初始化
         Transformer t = new Transformer();
         if (dest.toString().equals(t.intToBinary("-8"))) {
-            if (src.toString().equals(t.intToBinary("-2"))) {
+            if(src.toString().equals(t.intToBinary("-2"))) {
                 remainderReg = new DataType(t.intToBinary("0"));
                 return new DataType(t.intToBinary("4"));
             } else if (src.toString().equals(t.intToBinary("2"))) {

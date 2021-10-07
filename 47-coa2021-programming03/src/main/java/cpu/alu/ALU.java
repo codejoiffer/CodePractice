@@ -2,7 +2,6 @@ package cpu.alu;
 
 import util.DataType;
 import util.Transformer;
-import java.lang.ArithmeticException;
 
 /**
  * Arithmetic Logic Unit
@@ -158,7 +157,7 @@ public class ALU {
      * @param dest 32-bits
      * @return 32-bits
      */
-    public DataType div(DataType src, DataType dest) {
+    public DataType div(DataType src, DataType dest) throws ArithmeticException {
         //TODO
         //首先初始化
         Transformer t = new Transformer();
@@ -170,7 +169,10 @@ public class ALU {
                 remainderReg = new DataType(t.intToBinary("0"));
                 return new DataType(t.intToBinary("-4"));
             }
-        } else {
+        }else if(src.toString().equals(t.intToBinary("0"))){
+            throw new ArithmeticException();
+        }
+            else {
             StringBuilder str = new StringBuilder();
             String chu = src.toString();
             char cha = src.toString().charAt(0);

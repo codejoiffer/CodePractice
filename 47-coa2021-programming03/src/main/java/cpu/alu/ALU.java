@@ -55,8 +55,7 @@ public class ALU {
 
 
         }
-        remainderReg=new DataType(strB.reverse().toString());
-        return remainderReg;
+        return new DataType(strB.reverse().toString());
     }
 
 
@@ -75,8 +74,7 @@ public class ALU {
         int result = ~Integer.parseInt(intege)+1;
         String result_1 = tran.intToBinary(String.valueOf(result));
         DataType dest_1 = new DataType(result_1);
-        remainderReg = add(dest_1,dest);
-        return remainderReg;
+        return add(dest_1,dest);
     }
 
 
@@ -141,10 +139,8 @@ public class ALU {
             }
 
         } //完成所有迭代
-        remainderReg =new DataType(str.substring(32,64));
 
-
-        return remainderReg;
+        return new DataType(str.substring(32,64));
     }
 
 
@@ -210,7 +206,9 @@ public class ALU {
                 else str.append(0);
             }
             str.deleteCharAt(32);
-            if (str.charAt(0) == dest.toString().charAt(0)) remainderReg = new DataType(str.substring(0, 32));
+            if (str.charAt(0) == dest.toString().charAt(0)){
+                remainderReg = new DataType(str.substring(0, 32));
+            }
             else {
                 if (dest.toString().charAt(0) == cha) remainderReg = add(new DataType(str.substring(0, 32)), src);
                 else remainderReg = sub(new DataType(str.substring(0, 32)), src);

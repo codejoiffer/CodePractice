@@ -177,15 +177,15 @@ public class ALU {
             String chu = src.toString();
             char cha = src.toString().charAt(0);
             int k = 0;
+            char des = dest.toString().charAt(0);
             while (k < 32) {
-                if (src.toString().charAt(0) == '0') str.append("0");
-                else str.append("1");
+                str.append(des);
                 k++;
             }
             for (char j : dest.toString().toCharArray()) str.append(j);
             for (int i = 0; i < 32; i++) {
                 if (str.charAt(0) == cha) {
-                    DataType temp = sub(new DataType(str.substring(0, 32)), src);
+                    DataType temp = sub(src, new DataType(str.substring(0, 32)));
                     str.replace(0, 32, temp.toString());
                     if (str.charAt(0) == cha) str.append(1);
                     else str.append(0);
@@ -199,7 +199,7 @@ public class ALU {
                 }
             }
             if (str.charAt(0) == cha) {
-                DataType temp = sub(new DataType(str.substring(0, 32)), src);
+                DataType temp = sub(src, new DataType(str.substring(0, 32)));
                 str.replace(0, 32, temp.toString());
                 if (str.charAt(0) == cha) str.append(1);
                 else str.append(0);

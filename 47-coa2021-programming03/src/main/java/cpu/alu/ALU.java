@@ -141,7 +141,7 @@ public class ALU {
 
         } //完成所有迭代
 
-        return new DataType(str.substring(32,64));
+        return new  DataType(str.substring(32,64));
     }
 
 

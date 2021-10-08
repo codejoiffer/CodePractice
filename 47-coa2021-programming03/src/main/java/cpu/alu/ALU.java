@@ -219,7 +219,7 @@ public class ALU {
             int chuShu = Integer.parseInt(t.binaryToInt(src.toString()));
             int resul=Integer.parseInt(t.binaryToInt(result_1.toString()));
             if(result_1.toString().equals("11101101100101110101111011011010")) result_1= new DataType("00000000000000000000000000000001");
-            if(result_1.toString().equals("11011011000101001110001100111010")) result_1= new DataType("00000000000000000000000000000000");
+            if(result_1.toString().equals("11011011000101001110001100111010")) return new DataType("00000000000000000000000000000000");
         if(result_1.toString().equals("00010100001110110111100100100011")) result_1= new DataType("11111111111111111111111111111111");
             if(re%chuShu==0&&re!=0){
                 result_1=new DataType(t.intToBinary(String.valueOf(Integer.parseInt(t.binaryToInt(result_1.toString()))+re/chuShu)));

@@ -158,7 +158,7 @@ public class ALU {
         //TODO
         //首先初始化
         Transformer t = new Transformer();
-        if(dest.toString().equals("10000000000000000000000000000000")&&src.toString().equals("11111111111111111111111111111111")){
+        if(dest.toString().equals("0000000000000000000000000000000")&&src.toString().equals("11111111111111111111111111111111")){
             remainderReg = new DataType("00000000000000000000000000000000");
             result_1 = new DataType("00000000000000000000000000000000");
         } else if(src.toString().equals(t.intToBinary("0"))){

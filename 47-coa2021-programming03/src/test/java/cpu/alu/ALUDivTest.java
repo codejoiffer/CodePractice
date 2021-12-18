@@ -43,6 +43,22 @@ public class ALUDivTest {
         assertEquals(quotient, result.toString());
         assertEquals(remainder, alu.remainderReg.toString());
     }
+    //自己的测试
+    @Test
+    public void DivSpecialTest2() {
+        Transformer t = new Transformer();
+        src = new DataType("00000000000000000000000000000001");
+        dest = new DataType("10000000000000000000000000000000");
+        result = alu.div(src, dest);
+        String temp = t.binaryToInt(result.toString());
+        String temp_2 = alu.remainderReg.toString();
+        String temp_0 = t.binaryToInt(alu.remainderReg.toString());
+        String quotient = t.intToBinary("0");
+        String temp_3=t.binaryToInt("11101101100101110101111011011010");
+        String remainder = t.intToBinary("0");
+        assertEquals(quotient, result.toString());
+        assertEquals(remainder, alu.remainderReg.toString());
+    }
 
     /**
      * 0 / 0  除0异常
